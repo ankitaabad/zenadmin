@@ -8,11 +8,11 @@
     "migrate": "source .env && npx prisma migrate dev && npx zapatos ",
     "zapatos": "npx zapatos",
     "precommit": "pretty-quick --staged",
-    "prepare": "husky install .husky",
+    "prepare": "simple-git-hooks",
     "fake": "npx prisma generate"
   },
   "simple-git-hooks": {
-    "pre-commit": "pretty-quick --staged"
+    "pre-commit": "npx lint-staged"
   },
   "author": "ankit aabad",
   "dependencies": {
