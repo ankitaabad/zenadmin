@@ -7,7 +7,6 @@
     "test": "vitest",
     "migrate": "source .env && npx prisma migrate dev && npx zapatos ",
     "zapatos": "npx zapatos",
-    "precommit": "pretty-quick --staged",
     "prepare": "simple-git-hooks",
     "fake": "npx prisma generate"
   },
