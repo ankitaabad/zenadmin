@@ -16,7 +16,6 @@ export const buyerRouter = s.router(buyerContract, {
   "getSellerCatalog": async ({ params: { sellerId } }) => {
     type sql = s.Products.SQL | s.Catalog.SQL
     const [err, products] = await tryit(db.sql<sql, s.Products.Selectable[]>` select ${"Products"}.* from  ${"Products"} where ${"catalogId"}= select ${"catalogId"} from ${"Catalog"} where ${"Catalog"}.${"sellerid"} = ${db.vals(sellerId)} limit 1`.run)(pool)
-    
     return okResponse(products)
   }
 
