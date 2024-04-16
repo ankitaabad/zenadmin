@@ -1,7 +1,7 @@
 import express from 'express';
-import bodyParser from "body-parser"
+import bodyParser from 'body-parser';
 
-import swaggerUi from 'swagger-ui-express'
+import swaggerUi from 'swagger-ui-express';
 import { mergedContract } from './apis/mergedContract';
 import { generateOpenApi } from '@ts-rest/open-api';
 import { authContract } from './apis/auth/contract';
@@ -13,7 +13,7 @@ import { buyerRouter } from './apis/buyer/router';
 import { sellerContract } from './apis/seller/contract';
 import { sellerRouter } from './apis/seller/router';
 const app = express();
-var jsonParser = bodyParser.json()
+var jsonParser = bodyParser.json();
 
 app.use(jsonParser);
 
