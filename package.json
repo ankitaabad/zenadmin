@@ -1,20 +1,25 @@
 {
-  "name": "zenadmin assignment",
+  "name": "zenadmin-assignment",
   "version": "1.0.0",
   "description": "",
   "scripts": {
     "dev": "nodemon src/index.ts",
     "test": "vitest",
     "migrate": "source .env && npx prisma migrate dev && npx zapatos ",
+    "zapatos": "npx zapatos",
     "precommit": "pretty-quick --staged",
     "prepare": "husky install .husky",
     "fake": "npx prisma generate"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pretty-quick --staged"
   },
   "author": "ankit aabad",
   "dependencies": {
     "@ts-rest/core": "^3.44.0",
     "@ts-rest/express": "^3.44.0",
     "@ts-rest/open-api": "^3.44.0",
+    "atomic-fns": "^1.1.2",
     "body-parser": "^1.20.2",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
@@ -38,6 +43,7 @@
     "pretty-quick": "^4.0.0",
     "prisma": "^5.12.1",
     "prisma-generator-fake-data": "^0.14.2",
+    "simple-git-hooks": "^2.11.1",
     "vitest": "^1.5.0"
   }
 }

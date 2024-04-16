@@ -123,6 +123,12 @@ declare module 'zapatos/schema' {
       */
       buyerId: string;
       /**
+      * **Orders.createdAt**
+      * - `timestamp` in database
+      * - `NOT NULL`, no default
+      */
+      createdAt: Date;
+      /**
       * **Orders.id**
       * - `varchar` in database
       * - `NOT NULL`, no default
@@ -148,6 +154,12 @@ declare module 'zapatos/schema' {
       * - `NOT NULL`, no default
       */
       buyerId: string;
+      /**
+      * **Orders.createdAt**
+      * - `timestamp` in database
+      * - `NOT NULL`, no default
+      */
+      createdAt: db.TimestampString;
       /**
       * **Orders.id**
       * - `varchar` in database
@@ -175,6 +187,12 @@ declare module 'zapatos/schema' {
       */
       buyerId?: string | db.Parameter<string> | db.SQLFragment | db.ParentColumn | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment | db.ParentColumn>;
       /**
+      * **Orders.createdAt**
+      * - `timestamp` in database
+      * - `NOT NULL`, no default
+      */
+      createdAt?: (db.TimestampString | Date) | db.Parameter<(db.TimestampString | Date)> | db.SQLFragment | db.ParentColumn | db.SQLFragment<any, (db.TimestampString | Date) | db.Parameter<(db.TimestampString | Date)> | db.SQLFragment | db.ParentColumn>;
+      /**
       * **Orders.id**
       * - `varchar` in database
       * - `NOT NULL`, no default
@@ -200,6 +218,12 @@ declare module 'zapatos/schema' {
       * - `NOT NULL`, no default
       */
       buyerId: string | db.Parameter<string> | db.SQLFragment;
+      /**
+      * **Orders.createdAt**
+      * - `timestamp` in database
+      * - `NOT NULL`, no default
+      */
+      createdAt: (db.TimestampString | Date) | db.Parameter<(db.TimestampString | Date)> | db.SQLFragment;
       /**
       * **Orders.id**
       * - `varchar` in database
@@ -227,6 +251,12 @@ declare module 'zapatos/schema' {
       */
       buyerId?: string | db.Parameter<string> | db.SQLFragment | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment>;
       /**
+      * **Orders.createdAt**
+      * - `timestamp` in database
+      * - `NOT NULL`, no default
+      */
+      createdAt?: (db.TimestampString | Date) | db.Parameter<(db.TimestampString | Date)> | db.SQLFragment | db.SQLFragment<any, (db.TimestampString | Date) | db.Parameter<(db.TimestampString | Date)> | db.SQLFragment>;
+      /**
       * **Orders.id**
       * - `varchar` in database
       * - `NOT NULL`, no default
@@ -253,32 +283,32 @@ declare module 'zapatos/schema' {
   }
 
   /**
-   * **products**
+   * **Products**
    * - Table in database
    */
-  export namespace products {
-    export type Table = 'products';
+  export namespace Products {
+    export type Table = 'Products';
     export interface Selectable {
       /**
-      * **products.catalogId**
+      * **Products.catalogId**
       * - `varchar` in database
       * - `NOT NULL`, no default
       */
       catalogId: string;
       /**
-      * **products.id**
+      * **Products.id**
       * - `varchar` in database
       * - `NOT NULL`, no default
       */
       id: string;
       /**
-      * **products.name**
+      * **Products.name**
       * - `text` in database
       * - `NOT NULL`, no default
       */
       name: string;
       /**
-      * **products.price**
+      * **Products.price**
       * - `int4` in database
       * - `NOT NULL`, no default
       */
@@ -286,25 +316,25 @@ declare module 'zapatos/schema' {
     }
     export interface JSONSelectable {
       /**
-      * **products.catalogId**
+      * **Products.catalogId**
       * - `varchar` in database
       * - `NOT NULL`, no default
       */
       catalogId: string;
       /**
-      * **products.id**
+      * **Products.id**
       * - `varchar` in database
       * - `NOT NULL`, no default
       */
       id: string;
       /**
-      * **products.name**
+      * **Products.name**
       * - `text` in database
       * - `NOT NULL`, no default
       */
       name: string;
       /**
-      * **products.price**
+      * **Products.price**
       * - `int4` in database
       * - `NOT NULL`, no default
       */
@@ -312,25 +342,25 @@ declare module 'zapatos/schema' {
     }
     export interface Whereable {
       /**
-      * **products.catalogId**
+      * **Products.catalogId**
       * - `varchar` in database
       * - `NOT NULL`, no default
       */
       catalogId?: string | db.Parameter<string> | db.SQLFragment | db.ParentColumn | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment | db.ParentColumn>;
       /**
-      * **products.id**
+      * **Products.id**
       * - `varchar` in database
       * - `NOT NULL`, no default
       */
       id?: string | db.Parameter<string> | db.SQLFragment | db.ParentColumn | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment | db.ParentColumn>;
       /**
-      * **products.name**
+      * **Products.name**
       * - `text` in database
       * - `NOT NULL`, no default
       */
       name?: string | db.Parameter<string> | db.SQLFragment | db.ParentColumn | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment | db.ParentColumn>;
       /**
-      * **products.price**
+      * **Products.price**
       * - `int4` in database
       * - `NOT NULL`, no default
       */
@@ -338,25 +368,25 @@ declare module 'zapatos/schema' {
     }
     export interface Insertable {
       /**
-      * **products.catalogId**
+      * **Products.catalogId**
       * - `varchar` in database
       * - `NOT NULL`, no default
       */
       catalogId: string | db.Parameter<string> | db.SQLFragment;
       /**
-      * **products.id**
+      * **Products.id**
       * - `varchar` in database
       * - `NOT NULL`, no default
       */
       id: string | db.Parameter<string> | db.SQLFragment;
       /**
-      * **products.name**
+      * **Products.name**
       * - `text` in database
       * - `NOT NULL`, no default
       */
       name: string | db.Parameter<string> | db.SQLFragment;
       /**
-      * **products.price**
+      * **Products.price**
       * - `int4` in database
       * - `NOT NULL`, no default
       */
@@ -364,31 +394,31 @@ declare module 'zapatos/schema' {
     }
     export interface Updatable {
       /**
-      * **products.catalogId**
+      * **Products.catalogId**
       * - `varchar` in database
       * - `NOT NULL`, no default
       */
       catalogId?: string | db.Parameter<string> | db.SQLFragment | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment>;
       /**
-      * **products.id**
+      * **Products.id**
       * - `varchar` in database
       * - `NOT NULL`, no default
       */
       id?: string | db.Parameter<string> | db.SQLFragment | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment>;
       /**
-      * **products.name**
+      * **Products.name**
       * - `text` in database
       * - `NOT NULL`, no default
       */
       name?: string | db.Parameter<string> | db.SQLFragment | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment>;
       /**
-      * **products.price**
+      * **Products.price**
       * - `int4` in database
       * - `NOT NULL`, no default
       */
       price?: number | db.Parameter<number> | db.SQLFragment | db.SQLFragment<any, number | db.Parameter<number> | db.SQLFragment>;
     }
-    export type UniqueIndex = 'products_pkey';
+    export type UniqueIndex = 'Products_pkey';
     export type Column = keyof Selectable;
     export type OnlyCols<T extends readonly Column[]> = Pick<Selectable, T[number]>;
     export type SQLExpression = Table | db.ColumnNames<Updatable | (keyof Updatable)[]> | db.ColumnValues<Updatable> | Whereable | Column | db.ParentColumn | db.GenericSQLExpression;
@@ -511,20 +541,20 @@ declare module 'zapatos/schema' {
   /* --- aggregate types --- */
 
   export namespace public {  
-    export type Table = Catalog.Table | Orders.Table | products.Table | User.Table;
-    export type Selectable = Catalog.Selectable | Orders.Selectable | products.Selectable | User.Selectable;
-    export type JSONSelectable = Catalog.JSONSelectable | Orders.JSONSelectable | products.JSONSelectable | User.JSONSelectable;
-    export type Whereable = Catalog.Whereable | Orders.Whereable | products.Whereable | User.Whereable;
-    export type Insertable = Catalog.Insertable | Orders.Insertable | products.Insertable | User.Insertable;
-    export type Updatable = Catalog.Updatable | Orders.Updatable | products.Updatable | User.Updatable;
-    export type UniqueIndex = Catalog.UniqueIndex | Orders.UniqueIndex | products.UniqueIndex | User.UniqueIndex;
-    export type Column = Catalog.Column | Orders.Column | products.Column | User.Column;
+    export type Table = Catalog.Table | Orders.Table | Products.Table | User.Table;
+    export type Selectable = Catalog.Selectable | Orders.Selectable | Products.Selectable | User.Selectable;
+    export type JSONSelectable = Catalog.JSONSelectable | Orders.JSONSelectable | Products.JSONSelectable | User.JSONSelectable;
+    export type Whereable = Catalog.Whereable | Orders.Whereable | Products.Whereable | User.Whereable;
+    export type Insertable = Catalog.Insertable | Orders.Insertable | Products.Insertable | User.Insertable;
+    export type Updatable = Catalog.Updatable | Orders.Updatable | Products.Updatable | User.Updatable;
+    export type UniqueIndex = Catalog.UniqueIndex | Orders.UniqueIndex | Products.UniqueIndex | User.UniqueIndex;
+    export type Column = Catalog.Column | Orders.Column | Products.Column | User.Column;
   
-    export type AllBaseTables = [Catalog.Table, Orders.Table, products.Table, User.Table];
+    export type AllBaseTables = [Catalog.Table, Orders.Table, Products.Table, User.Table];
     export type AllForeignTables = [];
     export type AllViews = [];
     export type AllMaterializedViews = [];
-    export type AllTablesAndViews = [Catalog.Table, Orders.Table, products.Table, User.Table];
+    export type AllTablesAndViews = [Catalog.Table, Orders.Table, Products.Table, User.Table];
   }
 
 
@@ -554,56 +584,56 @@ declare module 'zapatos/schema' {
   export type SelectableForTable<T extends Table> = {
     "Catalog": Catalog.Selectable;
     "Orders": Orders.Selectable;
-    "products": products.Selectable;
+    "Products": Products.Selectable;
     "User": User.Selectable;
   }[T];
 
   export type JSONSelectableForTable<T extends Table> = {
     "Catalog": Catalog.JSONSelectable;
     "Orders": Orders.JSONSelectable;
-    "products": products.JSONSelectable;
+    "Products": Products.JSONSelectable;
     "User": User.JSONSelectable;
   }[T];
 
   export type WhereableForTable<T extends Table> = {
     "Catalog": Catalog.Whereable;
     "Orders": Orders.Whereable;
-    "products": products.Whereable;
+    "Products": Products.Whereable;
     "User": User.Whereable;
   }[T];
 
   export type InsertableForTable<T extends Table> = {
     "Catalog": Catalog.Insertable;
     "Orders": Orders.Insertable;
-    "products": products.Insertable;
+    "Products": Products.Insertable;
     "User": User.Insertable;
   }[T];
 
   export type UpdatableForTable<T extends Table> = {
     "Catalog": Catalog.Updatable;
     "Orders": Orders.Updatable;
-    "products": products.Updatable;
+    "Products": Products.Updatable;
     "User": User.Updatable;
   }[T];
 
   export type UniqueIndexForTable<T extends Table> = {
     "Catalog": Catalog.UniqueIndex;
     "Orders": Orders.UniqueIndex;
-    "products": products.UniqueIndex;
+    "Products": Products.UniqueIndex;
     "User": User.UniqueIndex;
   }[T];
 
   export type ColumnForTable<T extends Table> = {
     "Catalog": Catalog.Column;
     "Orders": Orders.Column;
-    "products": products.Column;
+    "Products": Products.Column;
     "User": User.Column;
   }[T];
 
   export type SQLForTable<T extends Table> = {
     "Catalog": Catalog.SQL;
     "Orders": Orders.SQL;
-    "products": products.SQL;
+    "Products": Products.SQL;
     "User": User.SQL;
   }[T];
 

@@ -30,14 +30,16 @@ model User {
 model Catalog {
   id       String     @id @db.VarChar(32)
   sellerid String     @unique @db.VarChar(32)
-  products products[]
+  products Products[]
 }
 
-model products {
+model Products {
   id        String  @id @db.VarChar(32)
   catalogId String  @db.VarChar(32)
   catalog   Catalog @relation(fields: [catalogId], references: [id])
+   ///FAKE:faker.commerce.product()
   name      String
+  ///FAKE:Number(faker.commerce.price())
   price     Int
 }
 
@@ -48,4 +50,5 @@ model Orders {
   sellerId String @db.VarChar(32)
   seller   User   @relation(fields: [sellerId], references: [id], name: "sellOrder")
   orderItems Json
+  createdAt DateTime
 }
