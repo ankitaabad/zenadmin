@@ -1,0 +1,12 @@
+{
+  "db": {
+    "connectionString": "postgresql://ankit.aabad1:iEmp5daL3QnX@ep-small-unit-a1dv8xd1.ap-southeast-1.aws.neon.tech/neondb?sslmode=require"
+  },
+  "outDir": "./src",
+  "schemas": {
+    "public": {
+      "include": "*",
+      "exclude": "public._prisma_migrations"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+generator custom_generator {
+    provider = "prisma-generator-fake-data"
+    output   = "../fake/data.ts"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserType {
+  BUYER
+  SELLER
+}
+
+model User {
+  id       String   @id @db.VarChar(32)
+  username String   @db.VarChar(32)
+  // password String
+  // salt String
+  type     UserType
+
+  buyOrders  Orders[] @relation(name: "buyOrder")
+  sellOrders Orders[] @relation(name: "sellOrder")
+}
+
+model Catalog {
+  id       String     @id @db.VarChar(32)
+  sellerid String     @unique @db.VarChar(32)
+  products products[]
+}
+
+model products {
+  id        String  @id @db.VarChar(32)
+  catalogId String  @db.VarChar(32)
+  catalog   Catalog @relation(fields: [catalogId], references: [id])
+  name      String
+  price     Int
+}
+
+model Orders {
+  id       String @id @db.VarChar(32)
+  buyerId  String @db.VarChar(32)
+  buyer    User   @relation(fields: [buyerId], references: [id], name: "buyOrder")
+  sellerId String @db.VarChar(32)
+  seller   User   @relation(fields: [sellerId], references: [id], name: "sellOrder")
+  orderItems Json
+}
