@@ -1,14 +1,14 @@
 import { initServer } from '@ts-rest/express';
 import * as db from 'zapatos/db';
 import kuuid from 'kuuid';
-import { fixedBuyerId, okResponse, pool } from '../../utils';
+import { badRequest, createResponse, okResponse, pool, token } from '../../utils';
 import { buyerContract } from './contract';
 // @ts-ignore
 import type * as s from 'zapatos/schema';
 // @ts-ignore
 import { conditions as dc } from 'zapatos/db';
 
-import { omit, pick, tryit, unique } from 'radash';
+import { unique } from 'radash';
 import { TsRestResponseError } from '@ts-rest/core';
 
 const s = initServer();
@@ -17,7 +17,7 @@ export const buyerRouter = s.router(buyerContract, {
     const sellers = await db
       .select('User', { type: 'SELLER' }, { columns: ['id', 'username'] })
       .run(pool);
-    return { status: 200, body: sellers };
+    return okResponse(sellers);
   },
   getSellerCatalog: async ({ params: { sellerId } }) => {
     console.log('inside get seller catalog');
@@ -29,11 +29,11 @@ export const buyerRouter = s.router(buyerContract, {
     // const { text, values } = query.compile();
     // console.log({ text, values });
     const products = await query.run(pool);
-    return { status: 200, body: products };
+    return okResponse(products);
   },
-  createOrder: async ({ params: { sellerId }, body: itemsToBuy }) => {
-    //todo: get buyerId from token
-    const id = kuuid.id();
+  createOrder: async ({ params: { sellerId }, body: itemsToBuy, res }) => {
+    const { id } = res.locals.token as token;
+    const orderId = kuuid.id();
 
     if (unique(itemsToBuy, (i) => i.id).length !== itemsToBuy.length) {
       throw new TsRestResponseError(buyerContract.createOrder, {
@@ -48,10 +48,10 @@ export const buyerRouter = s.router(buyerContract, {
 
     const availableItems = await query.run(pool);
     if (availableItems.length !== itemsToBuy.length) {
-      throw new TsRestResponseError(buyerContract.createOrder, {
-        status: 400,
-        body: { message: 'some items are not in the catalog' },
-      });
+      throw new TsRestResponseError(
+        buyerContract.createOrder,
+        badRequest('some items are not in the catalog')
+      );
     }
     const orderItems = itemsToBuy.map((item) => {
       const { name, price } = availableItems.find((ai) => ai.id === item.id);
@@ -61,12 +61,12 @@ export const buyerRouter = s.router(buyerContract, {
     await db
       .insert('Orders', {
         sellerId: sellerId,
-        buyerId: fixedBuyerId,
+        buyerId: id,
         createdAt: new Date(),
-        id,
+        id: orderId,
         orderItems: JSON.stringify(orderItems),
       })
       .run(pool);
-    return { status: 201, body: { id } };
+    return createResponse({ id: orderId });
   },
 });

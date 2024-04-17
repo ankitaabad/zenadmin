@@ -33,5 +33,11 @@ export const buyerContract = c.router(
       summary: 'Place an order',
     },
   },
-  { pathPrefix: '/api/buyer', commonResponses: { 400: c.type<{ message: string }>() } }
+  {
+    pathPrefix: '/api/buyer',
+    commonResponses: { 400: c.type<{ message: string }>(), 401: c.type<{ message: string }>() },
+    baseHeaders: z.object({
+      authorization: z.string(),
+    }),
+  }
 );

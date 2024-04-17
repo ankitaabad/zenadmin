@@ -1,40 +1,74 @@
+import { userType } from './apis/auth/contract';
 import 'dotenv/config';
+import { RequestHandler } from 'express';
 import Pool from 'pg-pool';
-import { partial } from 'radash';
-
+import { partial, tryit } from 'radash';
+import jwt from 'jsonwebtoken';
+import { TsRestResponseError } from '@ts-rest/core';
+import { buyerContract } from './apis/buyer/contract';
 export const env = process.env as {
   DATABASE_URL: string;
   PORT: string;
+  JWTSECRET: string;
 };
 export const pool = new Pool({
   connectionString: env.DATABASE_URL,
 });
-export const fixedSellerId = '001rwka70n0OQI4SUEzm0bfD9v1JmxIu';
-export const fixedBuyerId = '001rwka70n0OQI4SUEzm0bfD9v1JmxIu';
-export const fixedSellerProducts = {sellerId:"001rwka70n0OQI4SUEzm0bfD9v1JmxIu",products:["001rwkaL2MJAJs1OUud72HMLPW2qmxo8","001rwkaL2cKcY942agiF2Kxezs18IBzr"]}
-//todo: get status type from ts-rest
-type status = 200 | 201 | 400;
-//todo: why partial is not giving correct types
-// function buildResponse <T>(status:status,body:T){
-//   return {status,body}
 
-// }
 export function okResponse<T>(body: T) {
   return {
-    status: 200 as status,
+    status: 200 as 200,
     body,
   };
 }
 
 export function createResponse<T>(body: T) {
   return {
-    status: 201 as status,
+    status: 201 as 201,
     body,
   };
 }
-export function badRequest<T>(body: T) {
+export function badRequest(message: string) {
   return {
-    status: 400 as status,
-    body,
+    status: 400 as 400,
+    body: { message },
   };
 }
+export function unauthorized() {
+  return {
+    status: 401 as 401,
+    body: { message: 'Unauthorized access' },
+  };
+}
+export type token = { username: string; id: string; type: userType };
+export const authMiddleware: RequestHandler = async (req, res, next) => {
+  console.log('inside auth middleware');
+  const authHeader = req.headers['authorization'];
+  console.log({ authHeader });
+  const token = authHeader && authHeader.split(' ')[1];
+
+  if (token == null) return res.status(400).json({ message: 'Please provide the token' });
+
+  const [err, data] = await tryit(jwt.verify)(token, env.JWTSECRET);
+  console.log({ data });
+  if (err) {
+    return res.status(401).json({ message: 'invalid token' });
+  }
+  res.locals.token = data;
+  next();
+};
+
+const restrictUserType = (shouldBeUserType: userType) => {
+  const fn: RequestHandler = async (req, res, next) => {
+    console.log('inside type restriction middelware');
+    const { type } = res.locals.token as token;
+    if (type !== shouldBeUserType) {
+      throw new TsRestResponseError(buyerContract, unauthorized());
+    }
+    next();
+  };
+  return fn;
+};
+
+export const buyerOnlyMiddleware = partial(restrictUserType, 'BUYER')();
+export const sellerOnlyMiddleware = partial(restrictUserType, 'SELLER')();

@@ -9,13 +9,22 @@ export const authContract = c.router(
     register: {
       method: 'POST',
       path: '/register',
-      // Todo: add password
-      body: z.object({ username: z.string().max(32), type: userTypeSchema }),
+      // Todo: add password validation
+      body: z.object({ username: z.string().max(32), password: z.string(), type: userTypeSchema }),
       responses: {
         201: c.type<{ id: string }>(),
       },
       summary: 'A new user can register with this api.',
     },
+    login: {
+      method: 'POST',
+      path: '/login',
+      body: z.object({ username: z.string(), password: z.string() }),
+      responses: {
+        200: c.type<{ token: string }>(),
+      },
+      summary: 'Login to the app',
+    },
   },
-  { pathPrefix: '/api/auth' }
+  { pathPrefix: '/api/auth', commonResponses: { 400: c.type<{ message: string }>() } }
 );

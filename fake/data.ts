@@ -2,11 +2,10 @@ import { UserType } from '@prisma/client';
 import { faker } from '@faker-js/faker';
 import Decimal from 'decimal.js';
 
-
-
 export function fakeUser() {
   return {
     username: faker.internet.userName(),
+    hash: faker.lorem.words(5),
     type: faker.helpers.arrayElement([UserType.BUYER, UserType.SELLER] as const),
   };
 }
@@ -14,6 +13,7 @@ export function fakeUserComplete() {
   return {
     id: faker.string.uuid(),
     username: faker.internet.userName(),
+    hash: faker.lorem.words(5),
     type: faker.helpers.arrayElement([UserType.BUYER, UserType.SELLER] as const),
   };
 }
@@ -44,7 +44,15 @@ export function fakeProductsComplete() {
 }
 export function fakeOrders() {
   return {
-    orderItems: JSON.stringify({"foo":"8ae0eb6e-567f-45aa-8d85-6687cf5185b2","bar":8539805807804416,"bike":"0","a":"p","b":0.9076025672256947,"name":"Velma","prop":"0b1"}),
+    orderItems: JSON.stringify({
+      foo: '5eb89fe7-b310-4dc3-aab1-e91891350e5c',
+      bar: 1900771243196416,
+      bike: 'a',
+      a: 'e',
+      b: 0.5253509825561196,
+      name: 'Lesly',
+      prop: '0b1',
+    }),
     createdAt: faker.date.anytime(),
   };
 }
@@ -53,7 +61,15 @@ export function fakeOrdersComplete() {
     id: faker.string.uuid(),
     buyerId: faker.string.uuid(),
     sellerId: faker.string.uuid(),
-    orderItems: JSON.stringify({"foo":"da207a1d-ef5a-4089-8d3e-c7aa7b06755a","bar":7012755808714752,"bike":"1","a":"i","b":0.34104325040243566,"name":"Unique","prop":"0b1"}),
+    orderItems: JSON.stringify({
+      foo: '891cb623-20b5-4900-a1f2-499da0399e5a',
+      bar: 358402907701248,
+      bike: 'e',
+      a: 'Y',
+      b: 0.7027911604382098,
+      name: 'Ryder',
+      prop: '0b1',
+    }),
     createdAt: faker.date.anytime(),
   };
 }

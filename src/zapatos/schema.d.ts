@@ -8,12 +8,12 @@ Released under the MIT licence: see LICENCE file
 */
 
 declare module 'zapatos/schema' {
-
   import type * as db from 'zapatos/db';
 
   // got a type error on schemaVersionCanary below? update by running `npx zapatos`
-  export interface schemaVersionCanary extends db.SchemaVersionCanary { version: 104 }
-
+  export interface schemaVersionCanary extends db.SchemaVersionCanary {
+    version: 104;
+  }
 
   /* === schema: public === */
 
@@ -34,78 +34,103 @@ declare module 'zapatos/schema' {
     export type Table = 'Catalog';
     export interface Selectable {
       /**
-      * **Catalog.id**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
+       * **Catalog.id**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
       id: string;
       /**
-      * **Catalog.sellerid**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
+       * **Catalog.sellerid**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
       sellerid: string;
     }
     export interface JSONSelectable {
       /**
-      * **Catalog.id**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
+       * **Catalog.id**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
       id: string;
       /**
-      * **Catalog.sellerid**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
+       * **Catalog.sellerid**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
       sellerid: string;
     }
     export interface Whereable {
       /**
-      * **Catalog.id**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
-      id?: string | db.Parameter<string> | db.SQLFragment | db.ParentColumn | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment | db.ParentColumn>;
+       * **Catalog.id**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
+      id?:
+        | string
+        | db.Parameter<string>
+        | db.SQLFragment
+        | db.ParentColumn
+        | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment | db.ParentColumn>;
       /**
-      * **Catalog.sellerid**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
-      sellerid?: string | db.Parameter<string> | db.SQLFragment | db.ParentColumn | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment | db.ParentColumn>;
+       * **Catalog.sellerid**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
+      sellerid?:
+        | string
+        | db.Parameter<string>
+        | db.SQLFragment
+        | db.ParentColumn
+        | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment | db.ParentColumn>;
     }
     export interface Insertable {
       /**
-      * **Catalog.id**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
+       * **Catalog.id**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
       id: string | db.Parameter<string> | db.SQLFragment;
       /**
-      * **Catalog.sellerid**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
+       * **Catalog.sellerid**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
       sellerid: string | db.Parameter<string> | db.SQLFragment;
     }
     export interface Updatable {
       /**
-      * **Catalog.id**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
-      id?: string | db.Parameter<string> | db.SQLFragment | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment>;
+       * **Catalog.id**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
+      id?:
+        | string
+        | db.Parameter<string>
+        | db.SQLFragment
+        | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment>;
       /**
-      * **Catalog.sellerid**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
-      sellerid?: string | db.Parameter<string> | db.SQLFragment | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment>;
+       * **Catalog.sellerid**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
+      sellerid?:
+        | string
+        | db.Parameter<string>
+        | db.SQLFragment
+        | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment>;
     }
     export type UniqueIndex = 'Catalog_pkey' | 'Catalog_sellerid_key';
     export type Column = keyof Selectable;
     export type OnlyCols<T extends readonly Column[]> = Pick<Selectable, T[number]>;
-    export type SQLExpression = Table | db.ColumnNames<Updatable | (keyof Updatable)[]> | db.ColumnValues<Updatable> | Whereable | Column | db.ParentColumn | db.GenericSQLExpression;
+    export type SQLExpression =
+      | Table
+      | db.ColumnNames<Updatable | (keyof Updatable)[]>
+      | db.ColumnValues<Updatable>
+      | Whereable
+      | Column
+      | db.ParentColumn
+      | db.GenericSQLExpression;
     export type SQL = SQLExpression | SQLExpression[];
   }
 
@@ -117,168 +142,235 @@ declare module 'zapatos/schema' {
     export type Table = 'Orders';
     export interface Selectable {
       /**
-      * **Orders.buyerId**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
+       * **Orders.buyerId**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
       buyerId: string;
       /**
-      * **Orders.createdAt**
-      * - `timestamp` in database
-      * - `NOT NULL`, no default
-      */
+       * **Orders.createdAt**
+       * - `timestamp` in database
+       * - `NOT NULL`, no default
+       */
       createdAt: Date;
       /**
-      * **Orders.id**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
+       * **Orders.id**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
       id: string;
       /**
-      * **Orders.orderItems**
-      * - `jsonb` in database
-      * - `NOT NULL`, no default
-      */
+       * **Orders.orderItems**
+       * - `jsonb` in database
+       * - `NOT NULL`, no default
+       */
       orderItems: db.JSONValue;
       /**
-      * **Orders.sellerId**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
+       * **Orders.sellerId**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
       sellerId: string;
     }
     export interface JSONSelectable {
       /**
-      * **Orders.buyerId**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
+       * **Orders.buyerId**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
       buyerId: string;
       /**
-      * **Orders.createdAt**
-      * - `timestamp` in database
-      * - `NOT NULL`, no default
-      */
+       * **Orders.createdAt**
+       * - `timestamp` in database
+       * - `NOT NULL`, no default
+       */
       createdAt: db.TimestampString;
       /**
-      * **Orders.id**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
+       * **Orders.id**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
       id: string;
       /**
-      * **Orders.orderItems**
-      * - `jsonb` in database
-      * - `NOT NULL`, no default
-      */
+       * **Orders.orderItems**
+       * - `jsonb` in database
+       * - `NOT NULL`, no default
+       */
       orderItems: db.JSONValue;
       /**
-      * **Orders.sellerId**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
+       * **Orders.sellerId**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
       sellerId: string;
     }
     export interface Whereable {
       /**
-      * **Orders.buyerId**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
-      buyerId?: string | db.Parameter<string> | db.SQLFragment | db.ParentColumn | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment | db.ParentColumn>;
+       * **Orders.buyerId**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
+      buyerId?:
+        | string
+        | db.Parameter<string>
+        | db.SQLFragment
+        | db.ParentColumn
+        | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment | db.ParentColumn>;
       /**
-      * **Orders.createdAt**
-      * - `timestamp` in database
-      * - `NOT NULL`, no default
-      */
-      createdAt?: (db.TimestampString | Date) | db.Parameter<(db.TimestampString | Date)> | db.SQLFragment | db.ParentColumn | db.SQLFragment<any, (db.TimestampString | Date) | db.Parameter<(db.TimestampString | Date)> | db.SQLFragment | db.ParentColumn>;
+       * **Orders.createdAt**
+       * - `timestamp` in database
+       * - `NOT NULL`, no default
+       */
+      createdAt?:
+        | (db.TimestampString | Date)
+        | db.Parameter<db.TimestampString | Date>
+        | db.SQLFragment
+        | db.ParentColumn
+        | db.SQLFragment<
+            any,
+            | (db.TimestampString | Date)
+            | db.Parameter<db.TimestampString | Date>
+            | db.SQLFragment
+            | db.ParentColumn
+          >;
       /**
-      * **Orders.id**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
-      id?: string | db.Parameter<string> | db.SQLFragment | db.ParentColumn | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment | db.ParentColumn>;
+       * **Orders.id**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
+      id?:
+        | string
+        | db.Parameter<string>
+        | db.SQLFragment
+        | db.ParentColumn
+        | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment | db.ParentColumn>;
       /**
-      * **Orders.orderItems**
-      * - `jsonb` in database
-      * - `NOT NULL`, no default
-      */
-      orderItems?: db.JSONValue | db.Parameter<db.JSONValue> | db.SQLFragment | db.ParentColumn | db.SQLFragment<any, db.JSONValue | db.Parameter<db.JSONValue> | db.SQLFragment | db.ParentColumn>;
+       * **Orders.orderItems**
+       * - `jsonb` in database
+       * - `NOT NULL`, no default
+       */
+      orderItems?:
+        | db.JSONValue
+        | db.Parameter<db.JSONValue>
+        | db.SQLFragment
+        | db.ParentColumn
+        | db.SQLFragment<
+            any,
+            db.JSONValue | db.Parameter<db.JSONValue> | db.SQLFragment | db.ParentColumn
+          >;
       /**
-      * **Orders.sellerId**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
-      sellerId?: string | db.Parameter<string> | db.SQLFragment | db.ParentColumn | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment | db.ParentColumn>;
+       * **Orders.sellerId**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
+      sellerId?:
+        | string
+        | db.Parameter<string>
+        | db.SQLFragment
+        | db.ParentColumn
+        | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment | db.ParentColumn>;
     }
     export interface Insertable {
       /**
-      * **Orders.buyerId**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
+       * **Orders.buyerId**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
       buyerId: string | db.Parameter<string> | db.SQLFragment;
       /**
-      * **Orders.createdAt**
-      * - `timestamp` in database
-      * - `NOT NULL`, no default
-      */
-      createdAt: (db.TimestampString | Date) | db.Parameter<(db.TimestampString | Date)> | db.SQLFragment;
+       * **Orders.createdAt**
+       * - `timestamp` in database
+       * - `NOT NULL`, no default
+       */
+      createdAt:
+        | (db.TimestampString | Date)
+        | db.Parameter<db.TimestampString | Date>
+        | db.SQLFragment;
       /**
-      * **Orders.id**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
+       * **Orders.id**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
       id: string | db.Parameter<string> | db.SQLFragment;
       /**
-      * **Orders.orderItems**
-      * - `jsonb` in database
-      * - `NOT NULL`, no default
-      */
+       * **Orders.orderItems**
+       * - `jsonb` in database
+       * - `NOT NULL`, no default
+       */
       orderItems: db.JSONValue | db.Parameter<db.JSONValue> | db.SQLFragment;
       /**
-      * **Orders.sellerId**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
+       * **Orders.sellerId**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
       sellerId: string | db.Parameter<string> | db.SQLFragment;
     }
     export interface Updatable {
       /**
-      * **Orders.buyerId**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
-      buyerId?: string | db.Parameter<string> | db.SQLFragment | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment>;
+       * **Orders.buyerId**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
+      buyerId?:
+        | string
+        | db.Parameter<string>
+        | db.SQLFragment
+        | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment>;
       /**
-      * **Orders.createdAt**
-      * - `timestamp` in database
-      * - `NOT NULL`, no default
-      */
-      createdAt?: (db.TimestampString | Date) | db.Parameter<(db.TimestampString | Date)> | db.SQLFragment | db.SQLFragment<any, (db.TimestampString | Date) | db.Parameter<(db.TimestampString | Date)> | db.SQLFragment>;
+       * **Orders.createdAt**
+       * - `timestamp` in database
+       * - `NOT NULL`, no default
+       */
+      createdAt?:
+        | (db.TimestampString | Date)
+        | db.Parameter<db.TimestampString | Date>
+        | db.SQLFragment
+        | db.SQLFragment<
+            any,
+            (db.TimestampString | Date) | db.Parameter<db.TimestampString | Date> | db.SQLFragment
+          >;
       /**
-      * **Orders.id**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
-      id?: string | db.Parameter<string> | db.SQLFragment | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment>;
+       * **Orders.id**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
+      id?:
+        | string
+        | db.Parameter<string>
+        | db.SQLFragment
+        | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment>;
       /**
-      * **Orders.orderItems**
-      * - `jsonb` in database
-      * - `NOT NULL`, no default
-      */
-      orderItems?: db.JSONValue | db.Parameter<db.JSONValue> | db.SQLFragment | db.SQLFragment<any, db.JSONValue | db.Parameter<db.JSONValue> | db.SQLFragment>;
+       * **Orders.orderItems**
+       * - `jsonb` in database
+       * - `NOT NULL`, no default
+       */
+      orderItems?:
+        | db.JSONValue
+        | db.Parameter<db.JSONValue>
+        | db.SQLFragment
+        | db.SQLFragment<any, db.JSONValue | db.Parameter<db.JSONValue> | db.SQLFragment>;
       /**
-      * **Orders.sellerId**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
-      sellerId?: string | db.Parameter<string> | db.SQLFragment | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment>;
+       * **Orders.sellerId**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
+      sellerId?:
+        | string
+        | db.Parameter<string>
+        | db.SQLFragment
+        | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment>;
     }
     export type UniqueIndex = 'Orders_pkey';
     export type Column = keyof Selectable;
     export type OnlyCols<T extends readonly Column[]> = Pick<Selectable, T[number]>;
-    export type SQLExpression = Table | db.ColumnNames<Updatable | (keyof Updatable)[]> | db.ColumnValues<Updatable> | Whereable | Column | db.ParentColumn | db.GenericSQLExpression;
+    export type SQLExpression =
+      | Table
+      | db.ColumnNames<Updatable | (keyof Updatable)[]>
+      | db.ColumnValues<Updatable>
+      | Whereable
+      | Column
+      | db.ParentColumn
+      | db.GenericSQLExpression;
     export type SQL = SQLExpression | SQLExpression[];
   }
 
@@ -290,138 +382,181 @@ declare module 'zapatos/schema' {
     export type Table = 'Products';
     export interface Selectable {
       /**
-      * **Products.catalogId**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
+       * **Products.catalogId**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
       catalogId: string;
       /**
-      * **Products.id**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
+       * **Products.id**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
       id: string;
       /**
-      * **Products.name**
-      * - `text` in database
-      * - `NOT NULL`, no default
-      */
+       * **Products.name**
+       * - `text` in database
+       * - `NOT NULL`, no default
+       */
       name: string;
       /**
-      * **Products.price**
-      * - `int4` in database
-      * - `NOT NULL`, no default
-      */
+       * **Products.price**
+       * - `int4` in database
+       * - `NOT NULL`, no default
+       */
       price: number;
     }
     export interface JSONSelectable {
       /**
-      * **Products.catalogId**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
+       * **Products.catalogId**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
       catalogId: string;
       /**
-      * **Products.id**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
+       * **Products.id**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
       id: string;
       /**
-      * **Products.name**
-      * - `text` in database
-      * - `NOT NULL`, no default
-      */
+       * **Products.name**
+       * - `text` in database
+       * - `NOT NULL`, no default
+       */
       name: string;
       /**
-      * **Products.price**
-      * - `int4` in database
-      * - `NOT NULL`, no default
-      */
+       * **Products.price**
+       * - `int4` in database
+       * - `NOT NULL`, no default
+       */
       price: number;
     }
     export interface Whereable {
       /**
-      * **Products.catalogId**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
-      catalogId?: string | db.Parameter<string> | db.SQLFragment | db.ParentColumn | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment | db.ParentColumn>;
+       * **Products.catalogId**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
+      catalogId?:
+        | string
+        | db.Parameter<string>
+        | db.SQLFragment
+        | db.ParentColumn
+        | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment | db.ParentColumn>;
       /**
-      * **Products.id**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
-      id?: string | db.Parameter<string> | db.SQLFragment | db.ParentColumn | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment | db.ParentColumn>;
+       * **Products.id**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
+      id?:
+        | string
+        | db.Parameter<string>
+        | db.SQLFragment
+        | db.ParentColumn
+        | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment | db.ParentColumn>;
       /**
-      * **Products.name**
-      * - `text` in database
-      * - `NOT NULL`, no default
-      */
-      name?: string | db.Parameter<string> | db.SQLFragment | db.ParentColumn | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment | db.ParentColumn>;
+       * **Products.name**
+       * - `text` in database
+       * - `NOT NULL`, no default
+       */
+      name?:
+        | string
+        | db.Parameter<string>
+        | db.SQLFragment
+        | db.ParentColumn
+        | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment | db.ParentColumn>;
       /**
-      * **Products.price**
-      * - `int4` in database
-      * - `NOT NULL`, no default
-      */
-      price?: number | db.Parameter<number> | db.SQLFragment | db.ParentColumn | db.SQLFragment<any, number | db.Parameter<number> | db.SQLFragment | db.ParentColumn>;
+       * **Products.price**
+       * - `int4` in database
+       * - `NOT NULL`, no default
+       */
+      price?:
+        | number
+        | db.Parameter<number>
+        | db.SQLFragment
+        | db.ParentColumn
+        | db.SQLFragment<any, number | db.Parameter<number> | db.SQLFragment | db.ParentColumn>;
     }
     export interface Insertable {
       /**
-      * **Products.catalogId**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
+       * **Products.catalogId**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
       catalogId: string | db.Parameter<string> | db.SQLFragment;
       /**
-      * **Products.id**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
+       * **Products.id**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
       id: string | db.Parameter<string> | db.SQLFragment;
       /**
-      * **Products.name**
-      * - `text` in database
-      * - `NOT NULL`, no default
-      */
+       * **Products.name**
+       * - `text` in database
+       * - `NOT NULL`, no default
+       */
       name: string | db.Parameter<string> | db.SQLFragment;
       /**
-      * **Products.price**
-      * - `int4` in database
-      * - `NOT NULL`, no default
-      */
+       * **Products.price**
+       * - `int4` in database
+       * - `NOT NULL`, no default
+       */
       price: number | db.Parameter<number> | db.SQLFragment;
     }
     export interface Updatable {
       /**
-      * **Products.catalogId**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
-      catalogId?: string | db.Parameter<string> | db.SQLFragment | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment>;
+       * **Products.catalogId**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
+      catalogId?:
+        | string
+        | db.Parameter<string>
+        | db.SQLFragment
+        | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment>;
       /**
-      * **Products.id**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
-      id?: string | db.Parameter<string> | db.SQLFragment | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment>;
+       * **Products.id**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
+      id?:
+        | string
+        | db.Parameter<string>
+        | db.SQLFragment
+        | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment>;
       /**
-      * **Products.name**
-      * - `text` in database
-      * - `NOT NULL`, no default
-      */
-      name?: string | db.Parameter<string> | db.SQLFragment | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment>;
+       * **Products.name**
+       * - `text` in database
+       * - `NOT NULL`, no default
+       */
+      name?:
+        | string
+        | db.Parameter<string>
+        | db.SQLFragment
+        | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment>;
       /**
-      * **Products.price**
-      * - `int4` in database
-      * - `NOT NULL`, no default
-      */
-      price?: number | db.Parameter<number> | db.SQLFragment | db.SQLFragment<any, number | db.Parameter<number> | db.SQLFragment>;
+       * **Products.price**
+       * - `int4` in database
+       * - `NOT NULL`, no default
+       */
+      price?:
+        | number
+        | db.Parameter<number>
+        | db.SQLFragment
+        | db.SQLFragment<any, number | db.Parameter<number> | db.SQLFragment>;
     }
     export type UniqueIndex = 'Products_pkey';
     export type Column = keyof Selectable;
     export type OnlyCols<T extends readonly Column[]> = Pick<Selectable, T[number]>;
-    export type SQLExpression = Table | db.ColumnNames<Updatable | (keyof Updatable)[]> | db.ColumnValues<Updatable> | Whereable | Column | db.ParentColumn | db.GenericSQLExpression;
+    export type SQLExpression =
+      | Table
+      | db.ColumnNames<Updatable | (keyof Updatable)[]>
+      | db.ColumnValues<Updatable>
+      | Whereable
+      | Column
+      | db.ParentColumn
+      | db.GenericSQLExpression;
     export type SQL = SQLExpression | SQLExpression[];
   }
 
@@ -433,131 +568,226 @@ declare module 'zapatos/schema' {
     export type Table = 'User';
     export interface Selectable {
       /**
-      * **User.id**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
+       * **User.hash**
+       * - `text` in database
+       * - `NOT NULL`, no default
+       */
+      hash: string;
+      /**
+       * **User.id**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
       id: string;
       /**
-      * **User.type**
-      * - `UserType` in database
-      * - `NOT NULL`, no default
-      */
+       * **User.type**
+       * - `UserType` in database
+       * - `NOT NULL`, no default
+       */
       type: UserType;
       /**
-      * **User.username**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
+       * **User.username**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
       username: string;
     }
     export interface JSONSelectable {
       /**
-      * **User.id**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
+       * **User.hash**
+       * - `text` in database
+       * - `NOT NULL`, no default
+       */
+      hash: string;
+      /**
+       * **User.id**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
       id: string;
       /**
-      * **User.type**
-      * - `UserType` in database
-      * - `NOT NULL`, no default
-      */
+       * **User.type**
+       * - `UserType` in database
+       * - `NOT NULL`, no default
+       */
       type: UserType;
       /**
-      * **User.username**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
+       * **User.username**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
       username: string;
     }
     export interface Whereable {
       /**
-      * **User.id**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
-      id?: string | db.Parameter<string> | db.SQLFragment | db.ParentColumn | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment | db.ParentColumn>;
+       * **User.hash**
+       * - `text` in database
+       * - `NOT NULL`, no default
+       */
+      hash?:
+        | string
+        | db.Parameter<string>
+        | db.SQLFragment
+        | db.ParentColumn
+        | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment | db.ParentColumn>;
       /**
-      * **User.type**
-      * - `UserType` in database
-      * - `NOT NULL`, no default
-      */
-      type?: UserType | db.Parameter<UserType> | db.SQLFragment | db.ParentColumn | db.SQLFragment<any, UserType | db.Parameter<UserType> | db.SQLFragment | db.ParentColumn>;
+       * **User.id**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
+      id?:
+        | string
+        | db.Parameter<string>
+        | db.SQLFragment
+        | db.ParentColumn
+        | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment | db.ParentColumn>;
       /**
-      * **User.username**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
-      username?: string | db.Parameter<string> | db.SQLFragment | db.ParentColumn | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment | db.ParentColumn>;
+       * **User.type**
+       * - `UserType` in database
+       * - `NOT NULL`, no default
+       */
+      type?:
+        | UserType
+        | db.Parameter<UserType>
+        | db.SQLFragment
+        | db.ParentColumn
+        | db.SQLFragment<any, UserType | db.Parameter<UserType> | db.SQLFragment | db.ParentColumn>;
+      /**
+       * **User.username**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
+      username?:
+        | string
+        | db.Parameter<string>
+        | db.SQLFragment
+        | db.ParentColumn
+        | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment | db.ParentColumn>;
     }
     export interface Insertable {
       /**
-      * **User.id**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
+       * **User.hash**
+       * - `text` in database
+       * - `NOT NULL`, no default
+       */
+      hash: string | db.Parameter<string> | db.SQLFragment;
+      /**
+       * **User.id**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
       id: string | db.Parameter<string> | db.SQLFragment;
       /**
-      * **User.type**
-      * - `UserType` in database
-      * - `NOT NULL`, no default
-      */
+       * **User.type**
+       * - `UserType` in database
+       * - `NOT NULL`, no default
+       */
       type: UserType | db.Parameter<UserType> | db.SQLFragment;
       /**
-      * **User.username**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
+       * **User.username**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
       username: string | db.Parameter<string> | db.SQLFragment;
     }
     export interface Updatable {
       /**
-      * **User.id**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
-      id?: string | db.Parameter<string> | db.SQLFragment | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment>;
+       * **User.hash**
+       * - `text` in database
+       * - `NOT NULL`, no default
+       */
+      hash?:
+        | string
+        | db.Parameter<string>
+        | db.SQLFragment
+        | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment>;
       /**
-      * **User.type**
-      * - `UserType` in database
-      * - `NOT NULL`, no default
-      */
-      type?: UserType | db.Parameter<UserType> | db.SQLFragment | db.SQLFragment<any, UserType | db.Parameter<UserType> | db.SQLFragment>;
+       * **User.id**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
+      id?:
+        | string
+        | db.Parameter<string>
+        | db.SQLFragment
+        | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment>;
       /**
-      * **User.username**
-      * - `varchar` in database
-      * - `NOT NULL`, no default
-      */
-      username?: string | db.Parameter<string> | db.SQLFragment | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment>;
+       * **User.type**
+       * - `UserType` in database
+       * - `NOT NULL`, no default
+       */
+      type?:
+        | UserType
+        | db.Parameter<UserType>
+        | db.SQLFragment
+        | db.SQLFragment<any, UserType | db.Parameter<UserType> | db.SQLFragment>;
+      /**
+       * **User.username**
+       * - `varchar` in database
+       * - `NOT NULL`, no default
+       */
+      username?:
+        | string
+        | db.Parameter<string>
+        | db.SQLFragment
+        | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment>;
     }
     export type UniqueIndex = 'User_pkey';
     export type Column = keyof Selectable;
     export type OnlyCols<T extends readonly Column[]> = Pick<Selectable, T[number]>;
-    export type SQLExpression = Table | db.ColumnNames<Updatable | (keyof Updatable)[]> | db.ColumnValues<Updatable> | Whereable | Column | db.ParentColumn | db.GenericSQLExpression;
+    export type SQLExpression =
+      | Table
+      | db.ColumnNames<Updatable | (keyof Updatable)[]>
+      | db.ColumnValues<Updatable>
+      | Whereable
+      | Column
+      | db.ParentColumn
+      | db.GenericSQLExpression;
     export type SQL = SQLExpression | SQLExpression[];
   }
 
   /* --- aggregate types --- */
 
-  export namespace public {  
+  export namespace public {
     export type Table = Catalog.Table | Orders.Table | Products.Table | User.Table;
-    export type Selectable = Catalog.Selectable | Orders.Selectable | Products.Selectable | User.Selectable;
-    export type JSONSelectable = Catalog.JSONSelectable | Orders.JSONSelectable | Products.JSONSelectable | User.JSONSelectable;
-    export type Whereable = Catalog.Whereable | Orders.Whereable | Products.Whereable | User.Whereable;
-    export type Insertable = Catalog.Insertable | Orders.Insertable | Products.Insertable | User.Insertable;
-    export type Updatable = Catalog.Updatable | Orders.Updatable | Products.Updatable | User.Updatable;
-    export type UniqueIndex = Catalog.UniqueIndex | Orders.UniqueIndex | Products.UniqueIndex | User.UniqueIndex;
+    export type Selectable =
+      | Catalog.Selectable
+      | Orders.Selectable
+      | Products.Selectable
+      | User.Selectable;
+    export type JSONSelectable =
+      | Catalog.JSONSelectable
+      | Orders.JSONSelectable
+      | Products.JSONSelectable
+      | User.JSONSelectable;
+    export type Whereable =
+      | Catalog.Whereable
+      | Orders.Whereable
+      | Products.Whereable
+      | User.Whereable;
+    export type Insertable =
+      | Catalog.Insertable
+      | Orders.Insertable
+      | Products.Insertable
+      | User.Insertable;
+    export type Updatable =
+      | Catalog.Updatable
+      | Orders.Updatable
+      | Products.Updatable
+      | User.Updatable;
+    export type UniqueIndex =
+      | Catalog.UniqueIndex
+      | Orders.UniqueIndex
+      | Products.UniqueIndex
+      | User.UniqueIndex;
     export type Column = Catalog.Column | Orders.Column | Products.Column | User.Column;
-  
+
     export type AllBaseTables = [Catalog.Table, Orders.Table, Products.Table, User.Table];
     export type AllForeignTables = [];
     export type AllViews = [];
     export type AllMaterializedViews = [];
     export type AllTablesAndViews = [Catalog.Table, Orders.Table, Products.Table, User.Table];
   }
-
-
 
   /* === global aggregate types === */
 
@@ -578,63 +808,61 @@ declare module 'zapatos/schema' {
   export type AllMaterializedViews = [...public.AllMaterializedViews];
   export type AllTablesAndViews = [...public.AllTablesAndViews];
 
-
   /* === lookups === */
 
   export type SelectableForTable<T extends Table> = {
-    "Catalog": Catalog.Selectable;
-    "Orders": Orders.Selectable;
-    "Products": Products.Selectable;
-    "User": User.Selectable;
+    Catalog: Catalog.Selectable;
+    Orders: Orders.Selectable;
+    Products: Products.Selectable;
+    User: User.Selectable;
   }[T];
 
   export type JSONSelectableForTable<T extends Table> = {
-    "Catalog": Catalog.JSONSelectable;
-    "Orders": Orders.JSONSelectable;
-    "Products": Products.JSONSelectable;
-    "User": User.JSONSelectable;
+    Catalog: Catalog.JSONSelectable;
+    Orders: Orders.JSONSelectable;
+    Products: Products.JSONSelectable;
+    User: User.JSONSelectable;
   }[T];
 
   export type WhereableForTable<T extends Table> = {
-    "Catalog": Catalog.Whereable;
-    "Orders": Orders.Whereable;
-    "Products": Products.Whereable;
-    "User": User.Whereable;
+    Catalog: Catalog.Whereable;
+    Orders: Orders.Whereable;
+    Products: Products.Whereable;
+    User: User.Whereable;
   }[T];
 
   export type InsertableForTable<T extends Table> = {
-    "Catalog": Catalog.Insertable;
-    "Orders": Orders.Insertable;
-    "Products": Products.Insertable;
-    "User": User.Insertable;
+    Catalog: Catalog.Insertable;
+    Orders: Orders.Insertable;
+    Products: Products.Insertable;
+    User: User.Insertable;
   }[T];
 
   export type UpdatableForTable<T extends Table> = {
-    "Catalog": Catalog.Updatable;
-    "Orders": Orders.Updatable;
-    "Products": Products.Updatable;
-    "User": User.Updatable;
+    Catalog: Catalog.Updatable;
+    Orders: Orders.Updatable;
+    Products: Products.Updatable;
+    User: User.Updatable;
   }[T];
 
   export type UniqueIndexForTable<T extends Table> = {
-    "Catalog": Catalog.UniqueIndex;
-    "Orders": Orders.UniqueIndex;
-    "Products": Products.UniqueIndex;
-    "User": User.UniqueIndex;
+    Catalog: Catalog.UniqueIndex;
+    Orders: Orders.UniqueIndex;
+    Products: Products.UniqueIndex;
+    User: User.UniqueIndex;
   }[T];
 
   export type ColumnForTable<T extends Table> = {
-    "Catalog": Catalog.Column;
-    "Orders": Orders.Column;
-    "Products": Products.Column;
-    "User": User.Column;
+    Catalog: Catalog.Column;
+    Orders: Orders.Column;
+    Products: Products.Column;
+    User: User.Column;
   }[T];
 
   export type SQLForTable<T extends Table> = {
-    "Catalog": Catalog.SQL;
-    "Orders": Orders.SQL;
-    "Products": Products.SQL;
-    "User": User.SQL;
+    Catalog: Catalog.SQL;
+    Orders: Orders.SQL;
+    Products: Products.SQL;
+    User: User.SQL;
   }[T];
-
 }
