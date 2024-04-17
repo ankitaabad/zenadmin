@@ -26,7 +26,7 @@ export const buyerContract = c.router(
       method: 'POST',
       path: '/create-order/:sellerId',
       pathParams: z.object({ sellerId: z.string() }),
-      body: z.array(z.object({ id: z.string(), qty: z.number() })),
+      body: z.array(z.object({ id: z.string(), qty: z.number().min(1) })),
       responses: {
         201: c.type<{ id: string }>(),
       },

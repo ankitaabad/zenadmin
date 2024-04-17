@@ -9,7 +9,7 @@
 
 - Go to `http://localhost:3000/api-docs` to open the swagger ui.
 - Run the apis.
-- Apis other than auth requires a token, use the login api to get the token and pass it in authorization field as `Bearer ${token}`
+- Apis other than auth requires a token, use the login api to get the token. Click on authorization button on top right. fill the token here.
 
 ![Swagger UI](swagger.png)
 

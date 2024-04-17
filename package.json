@@ -34,6 +34,7 @@
     "pg-pool": "^3.6.2",
     "radash": "^12.1.0",
     "remeda": "^1.59.0",
+    "request_trimmer": "^1.0.0",
     "swagger-ui-express": "^5.0.0",
     "zapatos": "^6.4.0",
     "zod": "^3.22.4"

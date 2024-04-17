@@ -13,7 +13,7 @@ export const sellerContract = c.router(
     createCatalog: {
       method: 'POST',
       path: '/create-catalog',
-      body: z.array(z.object({ name: z.string(), price: z.number() })),
+      body: z.array(z.object({ name: z.string(), price: z.number().positive().min(1) })),
       responses: {
         201: c.type<{ id: string; products: product[] }>(),
       },

@@ -11,12 +11,13 @@ import { buyerContract } from './apis/buyer/contract';
 import { buyerRouter } from './apis/buyer/router';
 import { sellerContract } from './apis/seller/contract';
 import { sellerRouter } from './apis/seller/router';
-
+//@ts-ignore
+import { trim_all } from 'request_trimmer';
 const app = express();
 var jsonParser = bodyParser.json();
 
 app.use(jsonParser);
-
+app.use(trim_all);
 const openApiDocument = generateOpenApi(mergedContract, {
   info: {
     title: 'Zen-Admin ECommerce',

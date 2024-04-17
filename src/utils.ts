@@ -59,7 +59,7 @@ const restrictUserType = (shouldBeUserType: userType) => {
   const fn: RequestHandler = async (req, res, next) => {
     const { type } = res.locals.token as token;
     if (type !== shouldBeUserType) {
-      throw new TsRestResponseError(buyerContract, unauthorized());
+      return res.status(401).json({ message: 'Unauthorized access' });
     }
     next();
   };
