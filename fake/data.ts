@@ -17,15 +17,10 @@ export function fakeUserComplete() {
     type: faker.helpers.arrayElement([UserType.BUYER, UserType.SELLER] as const),
   };
 }
-export function fakeCatalog() {
-  return {
-    sellerid: faker.lorem.words(5),
-  };
-}
 export function fakeCatalogComplete() {
   return {
     id: faker.string.uuid(),
-    sellerid: faker.lorem.words(5),
+    sellerid: faker.string.uuid(),
   };
 }
 export function fakeProducts() {
@@ -45,12 +40,12 @@ export function fakeProductsComplete() {
 export function fakeOrders() {
   return {
     orderItems: JSON.stringify({
-      foo: '5eb89fe7-b310-4dc3-aab1-e91891350e5c',
-      bar: 1900771243196416,
-      bike: 'a',
-      a: 'e',
-      b: 0.5253509825561196,
-      name: 'Lesly',
+      foo: 'db7671a9-48c2-4490-ba25-aa083f1e9aa2',
+      bar: 6725482026369024,
+      bike: '9',
+      a: 'O',
+      b: 0.48382504167966545,
+      name: 'Lexi',
       prop: '0b1',
     }),
     createdAt: faker.date.anytime(),
@@ -62,12 +57,12 @@ export function fakeOrdersComplete() {
     buyerId: faker.string.uuid(),
     sellerId: faker.string.uuid(),
     orderItems: JSON.stringify({
-      foo: '891cb623-20b5-4900-a1f2-499da0399e5a',
-      bar: 358402907701248,
-      bike: 'e',
-      a: 'Y',
-      b: 0.7027911604382098,
-      name: 'Ryder',
+      foo: '3e68ebdb-e029-42e7-a8bc-43e4da4eaaab',
+      bar: 8730621387997184,
+      bike: '9',
+      a: 'k',
+      b: 0.8118556900881231,
+      name: 'Willy',
       prop: '0b1',
     }),
     createdAt: faker.date.anytime(),

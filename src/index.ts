@@ -1,6 +1,5 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import { writeJsonFile } from 'write-json-file';
 import swaggerUi from 'swagger-ui-express';
 import { mergedContract } from './apis/mergedContract';
 import { generateOpenApi } from '@ts-rest/open-api';
@@ -26,11 +25,12 @@ const openApiDocument = generateOpenApi(mergedContract, {
   components: {
     securitySchemes: {
       bearerAuth: {
-        name: 'bearer',
         type: 'http',
-        in: 'header',
         scheme: 'bearer',
         bearerFormat: 'JWT',
+        in: 'header',
+        name: 'bearer',
+        // name: 'Authorization', // optional
       },
     },
   },
@@ -41,7 +41,6 @@ const openApiDocument = generateOpenApi(mergedContract, {
   ],
 });
 const port = env.PORT || 3000;
-
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openApiDocument));
 createExpressEndpoints(authContract, authRouter, app);
 

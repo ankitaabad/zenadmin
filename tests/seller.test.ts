@@ -15,19 +15,16 @@ describe('sellers flow', () => {
       .map(() => {
         return fakeProducts();
       });
-    console.log({ items });
     const { body, status } = await fetchClient.seller.createCatalog({
       body: items,
       ...authHeader(data.sellerWithoutCatalog.token),
     });
-    console.log({ body: JSON.stringify(body) });
     expect(status).toBe(201);
   });
   //todo: catalog already exist
 
   it('get all orders for a seller', async () => {
     const { body, status } = await fetchClient.seller.getOrders(authHeader(data.seller.token));
-    console.log({ body });
     expect(status).toBe(200);
   });
 });

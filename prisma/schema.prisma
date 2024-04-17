@@ -19,18 +19,20 @@ enum UserType {
 
 model User {
   id       String @id @db.VarChar(32)
-  username String @db.VarChar(32)
-  hash     String 
+  username String @unique @db.VarChar(32)
+  hash     String
 
   type UserType
 
   buyOrders  Orders[] @relation(name: "buyOrder")
   sellOrders Orders[] @relation(name: "sellOrder")
+  Catalog    Catalog?
 }
 
 model Catalog {
   id       String     @id @db.VarChar(32)
   sellerid String     @unique @db.VarChar(32)
+  seller   User       @relation(fields: [sellerid], references: [id])
   products Products[]
 }
 
@@ -42,6 +44,7 @@ model Products {
   name      String
   ///FAKE:Number(faker.commerce.price())
   price     Int
+  @@index([catalogId])
 }
 
 model Orders {
@@ -52,4 +55,5 @@ model Orders {
   seller     User     @relation(fields: [sellerId], references: [id], name: "sellOrder")
   orderItems Json
   createdAt  DateTime
+  @@index([sellerId])
 }

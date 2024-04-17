@@ -732,7 +732,7 @@ declare module 'zapatos/schema' {
         | db.SQLFragment
         | db.SQLFragment<any, string | db.Parameter<string> | db.SQLFragment>;
     }
-    export type UniqueIndex = 'User_pkey';
+    export type UniqueIndex = 'User_pkey' | 'User_username_key';
     export type Column = keyof Selectable;
     export type OnlyCols<T extends readonly Column[]> = Pick<Selectable, T[number]>;
     export type SQLExpression =

@@ -12,7 +12,6 @@ export const sellerRouter = s.router(sellerContract, {
   createCatalog: async ({ body, res }) => {
     const { id } = res.locals.token as token;
     const catalogId = kuuid.id();
-    console.log('inside create catalog');
     let dberr;
     const products = body.map((item) => {
       return { id: kuuid.id(), catalogId, name: item.name, price: item.price };
@@ -34,7 +33,6 @@ export const sellerRouter = s.router(sellerContract, {
         badRequest('You already have a catalog.')
       );
     }
-    console.log('******************** after db insert');
 
     return createResponse({ id: catalogId, products });
   },

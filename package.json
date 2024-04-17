@@ -32,7 +32,6 @@
     "radash": "^12.1.0",
     "remeda": "^1.59.0",
     "swagger-ui-express": "^5.0.0",
-    "write-json-file": "^5.0.0",
     "zapatos": "^6.4.0",
     "zod": "^3.22.4"
   },
@@ -43,7 +42,6 @@
     "@types/node": "^20.12.7",
     "@types/pg-pool": "^2.0.6",
     "@types/swagger-ui-express": "^4.1.6",
-    "husky": "^9.0.11",
     "nodemon": "^3.1.0",
     "prettier": "^3.2.5",
     "pretty-quick": "^4.0.0",

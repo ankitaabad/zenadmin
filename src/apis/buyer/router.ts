@@ -20,7 +20,6 @@ export const buyerRouter = s.router(buyerContract, {
     return okResponse(sellers);
   },
   getSellerCatalog: async ({ params: { sellerId } }) => {
-    console.log('inside get seller catalog');
     type sql = s.Products.SQL | s.Catalog.SQL;
     const query = db.sql<
       sql,
@@ -57,7 +56,6 @@ export const buyerRouter = s.router(buyerContract, {
       const { name, price } = availableItems.find((ai) => ai.id === item.id);
       return { ...item, name, price };
     });
-    console.log({ orderItems });
     await db
       .insert('Orders', {
         sellerId: sellerId,

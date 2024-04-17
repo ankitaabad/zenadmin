@@ -1,3 +1,4 @@
+import { tryit } from 'radash';
 import { initServer } from '@ts-rest/express';
 import { authContract } from './contract';
 import * as db from 'zapatos/db';
@@ -10,13 +11,15 @@ import jwt from 'jsonwebtoken';
 const s = initServer();
 export const authRouter = s.router(authContract, {
   register: async ({ body: { username, type, password } }) => {
-    console.log('inside register');
-    console.log({ username, password, type });
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
 
     const id = kuuid.id();
-    await db.insert('User', { id, type, username, hash }).run(pool);
+    const [err, data] = await tryit(db.insert('User', { id, type, username, hash }).run)(pool);
+    //@ts-ignore
+    if (err?.code === '23505') {
+      throw new TsRestResponseError(authContract.register, badRequest('username already exists'));
+    }
     return createResponse({ id });
   },
   login: async ({ body: { username, password } }) => {

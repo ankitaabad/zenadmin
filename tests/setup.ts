@@ -51,7 +51,6 @@ const init = async () => {
     ).body.id;
 
     buyer.token = (await fetchClient.auth.login({ body: buyer })).body.token;
-    console.log({ buyerToken: buyer.token });
     seller.token = (await fetchClient.auth.login({ body: seller })).body.token;
     sellerWithoutCatalog.token = (
       await fetchClient.auth.login({ body: sellerWithoutCatalog })
@@ -71,7 +70,6 @@ const init = async () => {
       body: seller.products,
       ...authHeader(buyer.token),
     });
-    console.log({ buyer });
     return Object.freeze({
       buyer: buyer as buyer,
       seller: seller as seller,

@@ -42,15 +42,12 @@ export function unauthorized() {
 }
 export type token = { username: string; id: string; type: userType };
 export const authMiddleware: RequestHandler = async (req, res, next) => {
-  console.log('inside auth middleware');
   const authHeader = req.headers['authorization'];
-  console.log({ authHeader });
   const token = authHeader && authHeader.split(' ')[1];
 
   if (token == null) return res.status(400).json({ message: 'Please provide the token' });
 
   const [err, data] = await tryit(jwt.verify)(token, env.JWTSECRET);
-  console.log({ data });
   if (err) {
     return res.status(401).json({ message: 'invalid token' });
   }
@@ -60,7 +57,6 @@ export const authMiddleware: RequestHandler = async (req, res, next) => {
 
 const restrictUserType = (shouldBeUserType: userType) => {
   const fn: RequestHandler = async (req, res, next) => {
-    console.log('inside type restriction middelware');
     const { type } = res.locals.token as token;
     if (type !== shouldBeUserType) {
       throw new TsRestResponseError(buyerContract, unauthorized());
