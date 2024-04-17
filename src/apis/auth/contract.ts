@@ -10,7 +10,11 @@ export const authContract = c.router(
       method: 'POST',
       path: '/register',
       // Todo: add password validation
-      body: z.object({ username: z.string().max(32), password: z.string(), type: userTypeSchema }),
+      body: z.object({
+        username: z.string().max(32),
+        password: z.string().min(6),
+        type: userTypeSchema,
+      }),
       responses: {
         201: c.type<{ id: string }>(),
       },

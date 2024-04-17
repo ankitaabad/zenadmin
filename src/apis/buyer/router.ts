@@ -65,6 +65,6 @@ export const buyerRouter = s.router(buyerContract, {
         orderItems: JSON.stringify(orderItems),
       })
       .run(pool);
-    return createResponse({ id: orderId });
+    return createResponse({ id: orderId, message: 'order placed successfully', orderItems });
   },
 });

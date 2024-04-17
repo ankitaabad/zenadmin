@@ -20,7 +20,7 @@ export const authRouter = s.router(authContract, {
     if (err?.code === '23505') {
       throw new TsRestResponseError(authContract.register, badRequest('username already exists'));
     }
-    return createResponse({ id });
+    return createResponse({ id, message: 'User Registered Successfully' });
   },
   login: async ({ body: { username, password } }) => {
     const user = await db.selectOne('User', { username }).run(pool);
@@ -36,6 +36,6 @@ export const authRouter = s.router(authContract, {
     const token = jwt.sign({ username, id: user.id, type: user.type }, env.JWTSECRET, {
       expiresIn: '1h',
     });
-    return okResponse({ token });
+    return okResponse({ token, message: 'Successfully authenticated' });
   },
 });
