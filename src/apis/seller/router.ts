@@ -1,5 +1,5 @@
 import { tryit } from 'radash';
-import { badRequest, fixedSellerId } from './../../utils';
+import { badRequest, fixedSellerId, fixedSellerProducts } from './../../utils';
 import { initServer } from '@ts-rest/express';
 import * as db from 'zapatos/db';
 import kuuid from 'kuuid';
@@ -41,13 +41,14 @@ export const sellerRouter = s.router(sellerContract, {
     }
     return { status: 201, body: { id: catalogId } };
   },
+
   getOrders: async () => {
     // todo:  get seller id from token
     //todo: future: can implement pagination as well
     const result = await db
       .select(
         'Orders',
-        { sellerId: fixedSellerId },
+        { sellerId: fixedSellerProducts.sellerId },
         { order: { by: 'createdAt', direction: 'DESC' } }
       )
       .run(pool);

@@ -13,7 +13,7 @@ export const sellerContract = c.router(
         201: c.type<{ id: string }>(),
         400: c.type<{ message: string }>(),
       },
-      summary: 'create a catalog',
+      summary: 'Create a catalog',
     },
     getOrders: {
       method: 'GET',
@@ -21,6 +21,7 @@ export const sellerContract = c.router(
       responses: {
         200: c.type<s.Orders.JSONSelectable[]>(),
       },
+      summary: 'Get all orders for a seller',
     },
   },
   { pathPrefix: '/api/seller' }

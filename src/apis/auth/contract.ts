@@ -14,7 +14,7 @@ export const authContract = c.router(
       responses: {
         201: c.type<{ id: string }>(),
       },
-      summary: 'A new user can register with this',
+      summary: 'A new user can register with this api.',
     },
   },
   { pathPrefix: '/api/auth' }

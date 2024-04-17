@@ -10,6 +10,8 @@ export const pool = new Pool({
   connectionString: env.DATABASE_URL,
 });
 export const fixedSellerId = '001rwka70n0OQI4SUEzm0bfD9v1JmxIu';
+export const fixedBuyerId = '001rwka70n0OQI4SUEzm0bfD9v1JmxIu';
+export const fixedSellerProducts = {sellerId:"001rwka70n0OQI4SUEzm0bfD9v1JmxIu",products:["001rwkaL2MJAJs1OUud72HMLPW2qmxo8","001rwkaL2cKcY942agiF2Kxezs18IBzr"]}
 //todo: get status type from ts-rest
 type status = 200 | 201 | 400;
 //todo: why partial is not giving correct types

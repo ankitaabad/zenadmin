@@ -11,17 +11,27 @@ export const buyerContract = c.router(
       responses: {
         200: c.type<{ id: string; username: string }[]>(),
       },
-      summary: 'get all the sellers',
+      summary: 'Get all the sellers',
     },
     getSellerCatalog: {
       method: 'GET',
-      path: 'seller-catalog/:sellerId',
+      path: '/seller-catalog/:sellerId',
       pathParams: z.object({ sellerId: z.string() }),
       responses: {
         200: c.type<s.Products.JSONSelectable[]>(),
       },
-      summary: 'get list of products sold by a seller',
+      summary: 'Get list of products sold by a seller',
+    },
+    createOrder: {
+      method: 'POST',
+      path: '/create-order/:sellerId',
+      pathParams: z.object({ sellerId: z.string() }),
+      body: z.array(z.object({ id: z.string(), qty: z.number() })),
+      responses: {
+        201: c.type<{ id: string }>(),
+      },
+      summary: 'Place an order',
     },
   },
-  { pathPrefix: '/api/buyer' }
+  { pathPrefix: '/api/buyer', commonResponses: { 400: c.type<{ message: string }>() } }
 );

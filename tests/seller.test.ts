@@ -7,7 +7,7 @@ describe('sellers flow', () => {
   it('create catalog', async () => {
     const items = Array(random(3, 10))
       .fill(0)
-      .map((_) => {
+      .map(() => {
         return fakeProducts();
       });
     console.log({ items });
@@ -16,4 +16,10 @@ describe('sellers flow', () => {
     expect(status).toBe(201);
   });
   //todo: catalog already exist
+
+  it('get all orders for a seller', async () => {
+    const { body, status } = await fetchClient.seller.getOrders();
+    console.log({ body });
+    expect(status).toBe(200);
+  });
 });

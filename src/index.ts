@@ -19,7 +19,7 @@ app.use(jsonParser);
 
 const openApiDocument = generateOpenApi(mergedContract, {
   info: {
-    title: 'Assignment',
+    title: 'Zen-Admin ECommerce',
     version: '1.0.0',
   },
 });
