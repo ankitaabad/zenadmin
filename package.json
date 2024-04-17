@@ -10,6 +10,9 @@
     "prepare": "simple-git-hooks",
     "fake": "npx prisma generate"
   },
+  "engines": {
+    "node": ">=18.16.0"
+  },
   "simple-git-hooks": {
     "pre-commit": "pretty-quick --staged"
   },
@@ -48,6 +51,7 @@
     "prisma": "^5.12.1",
     "prisma-generator-fake-data": "^0.14.2",
     "simple-git-hooks": "^2.11.1",
+    "ts-node": "^10.9.2",
     "vitest": "^1.5.0"
   }
 }

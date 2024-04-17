@@ -21,6 +21,18 @@ describe('sellers flow', () => {
     });
     expect(status).toBe(201);
   });
+  it('should fail to create catalog if catalog is already created', async () => {
+    const items = Array(random(3, 10))
+      .fill(0)
+      .map(() => {
+        return fakeProducts();
+      });
+    const { body, status } = await fetchClient.seller.createCatalog({
+      body: items,
+      ...authHeader(data.seller.token),
+    });
+    expect(status).toBe(400);
+  });
   //todo: catalog already exist
 
   it('get all orders for a seller', async () => {

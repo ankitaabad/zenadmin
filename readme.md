@@ -1,6 +1,7 @@
 **How to Run**
 
 - Clone the repo `git clone https://github.com/ankitaabad/zenadmin.git`
+- Requires recent node version >= 18.16.0
 - Install the dependencies `npm install`
 - Run the Server `npm run dev`
 

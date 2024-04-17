@@ -40,13 +40,13 @@ export function fakeProductsComplete() {
 export function fakeOrders() {
   return {
     orderItems: JSON.stringify({
-      foo: 'db7671a9-48c2-4490-ba25-aa083f1e9aa2',
-      bar: 6725482026369024,
-      bike: '9',
-      a: 'O',
-      b: 0.48382504167966545,
-      name: 'Lexi',
-      prop: '0b1',
+      foo: '34e67350-ab15-4ff0-8c51-dd8812a14831',
+      bar: 1254907805958144,
+      bike: '5',
+      a: '7',
+      b: 0.5649053887464106,
+      name: 'Valentina',
+      prop: '0b0',
     }),
     createdAt: faker.date.anytime(),
   };
@@ -57,13 +57,13 @@ export function fakeOrdersComplete() {
     buyerId: faker.string.uuid(),
     sellerId: faker.string.uuid(),
     orderItems: JSON.stringify({
-      foo: '3e68ebdb-e029-42e7-a8bc-43e4da4eaaab',
-      bar: 8730621387997184,
-      bike: '9',
-      a: 'k',
-      b: 0.8118556900881231,
-      name: 'Willy',
-      prop: '0b1',
+      foo: '60561cac-90ef-45ec-8642-d3b9bcb0a5a8',
+      bar: 2687518774394880,
+      bike: '1',
+      a: 'L',
+      b: 0.17208867752924562,
+      name: 'Francisca',
+      prop: '0b0',
     }),
     createdAt: faker.date.anytime(),
   };
