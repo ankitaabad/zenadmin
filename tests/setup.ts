@@ -44,17 +44,17 @@ const init = async () => {
     seller.type = 'SELLER';
     const sellerWithoutCatalog: Partial<seller> = getUser();
     sellerWithoutCatalog.type = 'SELLER';
-    buyer.id = (await fetchClient.auth.register({ body: buyer })).body.id;
-    seller.id = (await fetchClient.auth.register({ body: seller })).body.id;
+    buyer.id = (await fetchClient.auth.register({ body: buyer })).body.data.userId;
+    seller.id = (await fetchClient.auth.register({ body: seller })).body.data.userId;
     sellerWithoutCatalog.id = (
       await fetchClient.auth.register({ body: sellerWithoutCatalog })
-    ).body.id;
+    ).body.data.userId;
 
-    buyer.token = (await fetchClient.auth.login({ body: buyer })).body.token;
-    seller.token = (await fetchClient.auth.login({ body: seller })).body.token;
+    buyer.token = (await fetchClient.auth.login({ body: buyer })).body.data.token;
+    seller.token = (await fetchClient.auth.login({ body: seller })).body.data.token;
     sellerWithoutCatalog.token = (
       await fetchClient.auth.login({ body: sellerWithoutCatalog })
-    ).body.token;
+    ).body.data.token;
 
     const items = Array(random(3, 10))
       .fill(0)
@@ -63,7 +63,7 @@ const init = async () => {
       });
     seller.products = (
       await fetchClient.seller.createCatalog({ body: items, ...authHeader(seller.token) })
-    ).body.products;
+    ).body.data.products;
 
     await fetchClient.buyer.createOrder({
       params: { sellerId: seller.id },

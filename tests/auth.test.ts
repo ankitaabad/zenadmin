@@ -18,7 +18,7 @@ describe('auth flow', () => {
     console.log({ response: body });
 
     expect(status).toBe(201);
-    expect(body).toHaveProperty('id');
+    expect(body.data).toHaveProperty('userId');
   });
   it('will create a seller', async () => {
     const { username, password } = getUser();
@@ -27,7 +27,7 @@ describe('auth flow', () => {
     });
     console.log({ response: body });
     expect(status).toBe(201);
-    expect(body).toHaveProperty('id');
+    expect(body.data).toHaveProperty('userId');
   });
   it('should fail to create an existing user', async () => {
     const { username, password } = data.seller;
@@ -44,6 +44,21 @@ describe('auth flow', () => {
     });
     console.log({ response: body });
     expect(status).toBe(200);
-    expect(body).toHaveProperty('token');
+    expect(body.data).toHaveProperty('token');
   });
 });
+// 001rxGWQ00i4KW0CNMPO2NOppu32FIqq
+/*
+{
+  "id": "001rxGYr2OcCna3KJX9n1DpcsB05Nxvr",
+  "catalogId": "001rxGYr40y5Lf2e7tIw4f54SO2quvra",
+  "name": "shoe",
+  "price": 100
+},
+{
+  "id": "001rxGYr0hZspW0LY9xO4aAHnz3ZAOu3",
+  "catalogId": "001rxGYr40y5Lf2e7tIw4f54SO2quvra",
+  "name": "earphone",
+  "price": 1000
+}
+*/

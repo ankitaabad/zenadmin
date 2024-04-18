@@ -15,7 +15,7 @@ export const sellerContract = c.router(
       path: '/create-catalog',
       body: z.array(z.object({ name: z.string(), price: z.number().positive().min(1) })),
       responses: {
-        201: c.type<{ id: string; products: product[] }>(),
+        201: c.type<{ message: string; data: { catalogId: string; products: product[] } }>(),
       },
       summary: 'Create a catalog',
     },
@@ -23,7 +23,7 @@ export const sellerContract = c.router(
       method: 'GET',
       path: '/orders',
       responses: {
-        200: c.type<s.Orders.JSONSelectable[]>(),
+        200: c.type<{ message: string; data: s.Orders.JSONSelectable[] }>(),
       },
       summary: 'Get all orders for a seller',
     },

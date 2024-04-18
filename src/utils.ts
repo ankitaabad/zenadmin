@@ -4,8 +4,6 @@ import { RequestHandler } from 'express';
 import Pool from 'pg-pool';
 import { partial, tryit } from 'radash';
 import jwt from 'jsonwebtoken';
-import { TsRestResponseError } from '@ts-rest/core';
-import { buyerContract } from './apis/buyer/contract';
 export const env = process.env as {
   DATABASE_URL: string;
   PORT: string;
@@ -15,17 +13,17 @@ export const pool = new Pool({
   connectionString: env.DATABASE_URL,
 });
 
-export function okResponse<T>(body: T) {
+export function okResponse<T>(data: T, message: string = 'SUCCESS') {
   return {
     status: 200 as 200,
-    body,
+    body: { message, data },
   };
 }
 
-export function createResponse<T>(body: T) {
+export function createResponse<T>(data: T, message: string = 'SUCCESS') {
   return {
     status: 201 as 201,
-    body,
+    body: { message, data },
   };
 }
 export function badRequest(message: string) {
@@ -65,6 +63,8 @@ const restrictUserType = (shouldBeUserType: userType) => {
   };
   return fn;
 };
-
+export const stringToBoolean = (str: string) => {
+  return str?.toLowerCase() === 'true';
+};
 export const buyerOnlyMiddleware = partial(restrictUserType, 'BUYER')();
 export const sellerOnlyMiddleware = partial(restrictUserType, 'SELLER')();

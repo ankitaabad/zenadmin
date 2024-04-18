@@ -8,8 +8,10 @@ export const buyerContract = c.router(
     getSellers: {
       method: 'GET',
       path: '/list-of-sellers',
+      query: z.object({ withCatalog: z.string().optional() }),
+
       responses: {
-        200: c.type<{ id: string; username: string }[]>(),
+        200: c.type<{ message: string; data: { id: string; seller: string }[] }>(),
       },
       summary: 'Get all the sellers',
     },
@@ -18,7 +20,7 @@ export const buyerContract = c.router(
       path: '/seller-catalog/:sellerId',
       pathParams: z.object({ sellerId: z.string() }),
       responses: {
-        200: c.type<s.Products.JSONSelectable[]>(),
+        200: c.type<{ message: string; data: s.Products.JSONSelectable[] }>(),
       },
       summary: 'Get list of products sold by a seller',
     },
@@ -28,7 +30,10 @@ export const buyerContract = c.router(
       pathParams: z.object({ sellerId: z.string() }),
       body: z.array(z.object({ id: z.string(), qty: z.number().min(1) })),
       responses: {
-        201: c.type<{ id: string }>(),
+        201: c.type<{
+          message: string;
+          data: { orderId: string; billAmount: number };
+        }>(),
       },
       summary: 'Place an order',
     },

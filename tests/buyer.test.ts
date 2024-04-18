@@ -30,7 +30,7 @@ describe('buyers flow', () => {
     });
     console.log({ body });
     expect(status).toBe(200);
-    expect(body).toHaveLength(0);
+    expect(body.data).toHaveLength(0);
   });
   it('should create order successfully', async () => {
     const { status, body } = await fetchClient.buyer.createOrder({

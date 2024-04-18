@@ -11,12 +11,12 @@ export const authContract = c.router(
       path: '/register',
       // Todo: add password validation
       body: z.object({
-        username: z.string().min(6).max(32),
-        password: z.string().min(6),
+        username: z.string().min(5).max(32),
+        password: z.string().min(5),
         type: userTypeSchema,
       }),
       responses: {
-        201: c.type<{ id: string }>(),
+        201: c.type<{ message: string; data: { userId: string } }>(),
       },
       summary: 'A new user can register with this api.',
     },
@@ -25,7 +25,7 @@ export const authContract = c.router(
       path: '/login',
       body: z.object({ username: z.string(), password: z.string() }),
       responses: {
-        200: c.type<{ token: string }>(),
+        200: c.type<{ message: string; data: { token: string; userId: string } }>(),
       },
       summary: 'Login to the app',
     },

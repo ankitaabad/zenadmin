@@ -9,16 +9,21 @@
 
 - Go to `http://localhost:3000/api-docs` to open the swagger ui.
 - Run the apis.
-- Apis other than auth requires a token, use the login api to get the token. Click on authorization button on top right. fill the token here.
 
-![Swagger UI](swagger.png)
+![Swagger UI](images/swagger.png)
+
+- Apis other than auth requires a token, use the login api to get the token. Click on authorization button on top right. fill the token here. No need to fill the authorization field again and again. [See the screencast here](https://youtu.be/92zYoLmT8lA)
+- A user with buyer type cannot hit the apis for seller.
+- `get list of Sellers` api also takes a `withCatalog` query param, if set to true it returns sellers who have created a catalog.
 
 ---
 
 **Test Cases**
 
+- Run `npx prisma generate` [just for the first time]
 - Run the server `npm run dev`
 - Run the api test cases `npm run test`
+  ![test cases](images/testcases.png)
 
 **Folder Structrue**
 

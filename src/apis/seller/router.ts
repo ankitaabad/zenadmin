@@ -5,11 +5,14 @@ import * as db from 'zapatos/db';
 import kuuid from 'kuuid';
 import { okResponse, pool } from '../../utils';
 import { sellerContract } from './contract';
-import { TsRestResponseError } from '@ts-rest/core';
+import { isEmpty } from 'remeda';
 
 const s = initServer();
 export const sellerRouter = s.router(sellerContract, {
   createCatalog: async ({ body, res }) => {
+    if (isEmpty(body)) {
+      return badRequest('Please provide the products to create a catalog.');
+    }
     const { id } = res.locals.token as token;
     const catalogId = kuuid.id();
     let dberr;
@@ -28,13 +31,12 @@ export const sellerRouter = s.router(sellerContract, {
     });
     //@ts-ignore
     if (dberr?.code === '23505') {
-      throw new TsRestResponseError(
-        sellerContract.createCatalog,
-        badRequest('You already have a catalog.')
+      return badRequest(
+        'You already have a catalog. As of now we dont have apis to update or replace the catalog.'
       );
     }
 
-    return createResponse({ id: catalogId, products });
+    return createResponse({ catalogId, products }, 'Catalog created successfully');
   },
 
   getOrders: async ({ res }) => {
