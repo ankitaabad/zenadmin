@@ -47,18 +47,3 @@ describe('auth flow', () => {
     expect(body.data).toHaveProperty('token');
   });
 });
-// 001rxGWQ00i4KW0CNMPO2NOppu32FIqq
-/*
-{
-  "id": "001rxGYr2OcCna3KJX9n1DpcsB05Nxvr",
-  "catalogId": "001rxGYr40y5Lf2e7tIw4f54SO2quvra",
-  "name": "shoe",
-  "price": 100
-},
-{
-  "id": "001rxGYr0hZspW0LY9xO4aAHnz3ZAOu3",
-  "catalogId": "001rxGYr40y5Lf2e7tIw4f54SO2quvra",
-  "name": "earphone",
-  "price": 1000
-}
-*/

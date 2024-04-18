@@ -9,6 +9,7 @@ import type * as s from 'zapatos/schema';
 import { conditions as dc } from 'zapatos/db';
 
 import { unique } from 'radash';
+import { isEmpty } from 'remeda';
 
 const s = initServer();
 export const buyerRouter = s.router(buyerContract, {
@@ -47,7 +48,9 @@ export const buyerRouter = s.router(buyerContract, {
   createOrder: async ({ params: { sellerId }, body: itemsToBuy, res }) => {
     const { id } = res.locals.token as token;
     const orderId = kuuid.id();
-
+    if (isEmpty(itemsToBuy)) {
+      return badRequest('Empty order');
+    }
     if (unique(itemsToBuy, (i) => i.id).length !== itemsToBuy.length) {
       return badRequest("Don't repeat items, add in quantity");
     }
